@@ -124,17 +124,32 @@
             d3.select("p")
                 .on("click", function() {
 
-                    if (dataset=="2003.csv") {
+                    if (dataset==[['BAYVIEW',2121,11],
+                                    ['CENTRAL',1193,70],
+                                    ['INGLESIDE',2319,5],
+                                    ['MISSION',2063,713],
+                                    ['NORTHERN',1879,581],
+                                    ['PARK',1207,2],
+                                    ['RICHMOND',1081,15],
+                                    ['SOUTHERN',1426,18],
+                                    ['TARAVAL',1665,10],
+                                    ['TENDERLOIN',371,527]];) {
 
-                        var dataset = d3.csv("2015.csv", function(data){
-                            data.forEach(function(d){ d.DISTRICT = d.DISTRICT;});
-                            data.forEach(function(d){ d.VEHICLETHEFT = +d.VEHICLETHEFT;});
-                            data.forEach(function(d){ d.PROSTITUTION = +d.PROSTITUTION; });
-                        }); 
+                        var dataset = [['BAYVIEW',981,6]
+                                        ['CENTRAL',549,44],
+                                        ['INGLESIDE',1368,4],
+                                        ['MISSION',1195,66],
+                                        ['NORTHERN',943,42],
+                                        ['PARK',639,1],
+                                        ['RICHMOND',561,9],
+                                        ['SOUTHERN',794,96],
+                                        ['TARAVAL',786,78],
+                                        ['TENDERLOIN',112,23]
+                                        ]; 
                         
                         //Update scale domains
-                        xScale.domain([0, d3.max(dataset, function(d) { return d.PROSTITUTION; })]);
-                        yScale.domain([0, d3.max(dataset, function(d) { return d.VEHICLETHEFT; })]);
+                        xScale.domain([0, d3.max(dataset, function(d) { return d[2]; })]);
+                        yScale.domain([0, d3.max(dataset, function(d) { return d[1]; })]);
 
                         //Update all circles
                         svg.selectAll("circle")
@@ -142,10 +157,10 @@
                            .transition()
                            .duration(1000)      
                            .attr("cx", function(d) {
-                                return xScale(d.PROSTITUTION);
+                                return xScale(d[2]);
                            })
                            .attr("cy", function(d) {
-                                return yScale(d.VEHICLETHEFT);
+                                return yScale(d[1]);
                            });
 
                         //Add labels   
@@ -154,13 +169,13 @@
                                    .enter()
                                    .append("text")
                                    .text(function(d) {
-                                        return d.DISTRICT;
+                                        return d[0];
                                    })
                                    .attr("x", function(d) {
-                                        return xScale(d.PROSTITUTION);
+                                        return xScale(d[2]);
                                    })
                                    .attr("y", function(d) {
-                                        return yScale(d.VEHICLETHEFT);
+                                        return yScale(d[1]);
                                    })
                                    .attr("font-family", "sans-serif")
                                    .attr("font-size", "11px")
