@@ -13,21 +13,7 @@
         <script type="text/javascript" src="d3/d3-master/d3.js"></script>
     </head>
     <body>
-        <script type="text/javascript">
-            var dataset = [ 5, 10, 15, 20, 25 ];
-            d3.select("body").selectAll("p")
-                .data(dataset)
-                .enter()
-                .append("p")
-                .text(function(d) { return "I can count up to " + d; })
-                .style("color", function(d) {
-                    if (d > 15) {   //Threshold of 15
-                        return "red";
-                    } else {
-                        return "black";
-                    }
-                });
-        </script>
+        
         <svg width="280" height="140">
             <rect x="0" y="60" width="80" height="80" fill="purple" opacity="1" stroke="gray" stroke-width="2"></rect> 
             <rect x="50" y="45" width="80" height="80" fill="blue" opacity="0.8" stroke="gray" stroke-width="2"></rect>
