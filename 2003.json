@@ -1,0 +1,52 @@
+[
+  {
+    "DISTRICT": "BAYVIEW",
+    "VEHICLETHEFT": 2121,
+    "PROSTITUTION": 11
+  },
+  {
+    "DISTRICT": "CENTRAL",
+    "VEHICLETHEFT": 1193,
+    "PROSTITUTION": 70
+  },
+  {
+    "DISTRICT": "INGLESIDE",
+    "VEHICLETHEFT": 2319,
+    "PROSTITUTION": 5
+  },
+  {
+    "DISTRICT": "MISSION",
+    "VEHICLETHEFT": 2063,
+    "PROSTITUTION": 713
+  },
+  {
+    "DISTRICT": "NORTHERN",
+    "VEHICLETHEFT": 1879,
+    "PROSTITUTION": 581
+  },
+  {
+    "DISTRICT": "PARK",
+    "VEHICLETHEFT": 1207,
+    "PROSTITUTION": 2
+  },
+  {
+    "DISTRICT": "RICHMOND",
+    "VEHICLETHEFT": 1081,
+    "PROSTITUTION": 15
+  },
+  {
+    "DISTRICT": "SOUTHERN",
+    "VEHICLETHEFT": 1426,
+    "PROSTITUTION": 18
+  },
+  {
+    "DISTRICT": "TARAVAL",
+    "VEHICLETHEFT": 1665,
+    "PROSTITUTION": 10
+  },
+  {
+    "DISTRICT": "TENDERLOIN",
+    "VEHICLETHEFT": 371,
+    "PROSTITUTION": 527
+  }
+]
