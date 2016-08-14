@@ -17,6 +17,7 @@
             }
         </style>
         <script type="text/javascript" src="d3/d3-master/d3.js"></script>
+        <script src="//d3js.org/topojson.v1.min.js"></script>
     </head>
     <body>
 
@@ -96,7 +97,30 @@
             </div>
             <p id="2C">Historical data for Assult</p>
         </div> 
+
+        <div id="d">
+            <h2>2D: Visualizing geodata</h2>
+            <p>
+                For this exercise we made a map. The map is of San Francisco's police districts. Overlayed on the map are recorded cases
+                of prostitution classified belonging different clusters using the k-means clustering algorithm.
+            </p>
+            <p>
+                <b>Use the buttons to switch the number of clusters</b> - the color of the circles represent the cluster
+                it belongs to. The nearest black circle is the centroid of the cluster. 
+                The more transparent a circle is the less reported prostitution crimes have been reported at that area.
+                This should make it easier to spot areas with a higher count reported crimes.
+            </p>
+            <button type="button" onclick="updateKmeans(6)">Click to k = 6</button>
+            <button type="button" onclick="updateKmeans(5)">Click to k = 5</button>
+            <button type="button" onclick="updateKmeans(4)">Click to k = 4</button>
+            <button type="button" onclick="updateKmeans(3)">Click to k = 3</button>
+            <button type="button" onclick="updateKmeans(2)">Click to k = 2</button>
+            <div id="vis"></div>
+            
+            <p>Should you wish to view how we generated the data used in the last exercise here is <a href="https://github.com/valentinibanez/Social-Data-Visualization/blob/gh-pages/ipython/Prostitution.ipynb">a link to the iPython notebook</a></p>
+        </div>
         
+        <script type="text/javascript" src="2D.js"></script>
         <script type="text/javascript" src="2B.js"></script>
         <script type="text/javascript" src="2C.js"></script>
     </body>
