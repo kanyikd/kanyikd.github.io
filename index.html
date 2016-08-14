@@ -4,7 +4,17 @@
         <meta charset="utf-8">
         <title>D3 Page Template</title>
         <style type="text/css">
-            
+            .axis path,
+            .axis line {
+                fill: none;
+                stroke: black;
+                shape-rendering: crispEdges;
+            }
+
+            .axis text {
+                font-family: sans-serif;
+                font-size: 11px;
+            }
         </style>
         <script type="text/javascript" src="d3/d3-master/d3.js"></script>
     </head>
@@ -13,416 +23,81 @@
         <a href="http://kanyikd.github.io/Exercise.ipynb" target="_blank">Download</a><br>
 
         <!--Assignment 2A-->
+        <div>
+            <h3>Assignment 2A: Simple SVG stuff</h3><br>
+            <p>Put something simple on the web. For this exercise, I want you to modify a bit of code from IDV Chapter 3.<br>
+                <ul>
+                <li>Create an new version of the 5 SVG squares in example 3-22. Make the following modifications</li>
+                <li>Add a gray boundary of width 2 around each square.</li>
+                <li>Make the squares increasingly transparant from left to right.</li>
+                <li>Make the squares 80 by 80 instead of 30 by 30.</li>
+                <li>Make the squares go from bottom of the SVG element to the top instead of the other way around.</li>
+                </ul>
+                </p>
 
-        <svg width="280" height="140">
-            <rect x="0" y="60" width="80" height="80" fill="purple" opacity="1" stroke="gray" stroke-width="2"></rect> 
-            <rect x="50" y="45" width="80" height="80" fill="blue" opacity="0.8" stroke="gray" stroke-width="2"></rect>
-            <rect x="100" y="30" width="80" height="80" fill="green" opacity="0.6" stroke="gray" stroke-width="2"></rect>
-            <rect x="150" y="15" width="80" height="80" fill="yellow" opacity="0.4" stroke="gray" stroke-width="2"></rect>
-            <rect x="200" y="0" width="80" height="80" fill="red" opacity="0.2" stroke="gray" stroke-width="2"></rect>
-        </svg>
+        </div>
+        <div>
+            <svg width="280" height="140">
+                <rect x="0" y="60" width="80" height="80" fill="purple" opacity="1" stroke="gray" stroke-width="2"></rect> 
+                <rect x="50" y="45" width="80" height="80" fill="blue" opacity="0.8" stroke="gray" stroke-width="2"></rect>
+                <rect x="100" y="30" width="80" height="80" fill="green" opacity="0.6" stroke="gray" stroke-width="2"></rect>
+                <rect x="150" y="15" width="80" height="80" fill="yellow" opacity="0.4" stroke="gray" stroke-width="2"></rect>
+                <rect x="200" y="0" width="80" height="80" fill="red" opacity="0.2" stroke="gray" stroke-width="2"></rect>
+            </svg>
+        </div>
         <br>
 
         <!--Assignment 2B-->
+        <div>
+            <h3>Assignment 2B: One scatter plot and two datasets</h3><br>
+            <p>
+                We will be visualizing SF crime data (the same dataset we've used in all the exerciese). This scatter plot visualization should pull data<br> from an associated CSV/JSON file (it's easiest to use Python to generate a nicely formatted file that contains only the data you need for<br> the visualization). You should use appropriate dynamic scales (see chapter 7 of IDV). Additional requirements for the visualizations <br>are listed below<br>
+                <ul>
 
+<li>Each point should correspond to a district</li>
+<li>Points should be labeled</li>
+<li>The radius of a point should be proportional to total number of crimes in that district</li>
+<li>The xx-axis should correspond to total number of PROSTITUTION incidents</li>
+<li>The yy-axis should correspond to total number of VEHICLE THEFT incidents</li>
+<li>Click on something (your choice) to toggle between data from 2003 and 2015 - there must be a smooth transition.</li>
+<li>Axes should not change but fit data from both years (e.g. when setting up the dynamic scales, the max values should be set by taking both datasets into arrount).</li>
+<li>Explain in your own words why you think I want the axes to be the same for both years? (Even though you know how to make axes adapt to the data values.)
+<ul><li>This way it becomes easy to visually compare the data from the two different year and highlight the changes.</li></ul>
+</li>
+            </ul>
+            </p>
+        </div>
 
-        
-        <script type="text/javascript">
+        <div class="chart" id="chart2">
+            <div>
+                <button type="button" id="button2003">2003</button>
+                <button type="button" id="button2015">2015</button>
+            </div>
+            <p id="2B">Crime data from 2003</p>
 
-                var w = 750;
-                var h = 500;
-                var padding = 60;
-
-                var dataset2003=[];
-                var dataset2015=[];
-                var x;
-
-                d3.json("2003.json", function(data) {
-                    for (var i = 0, l=data.length, k=0, j=0; i <l; i++) {
-                        if (data[i]['YEAR']==2003) {
-                            dataset2003.push([]);
-                            dataset2003[k].push(data[i]['DISTRICT']);
-                            dataset2003[k].push(data[i]["VEHICLETHEFT"]); 
-                            dataset2003[k].push(data[i]["PROSTITUTION"]);
-                            k++;
-                        }
-                        else {
-                            dataset2015.push([]);
-                            dataset2015[j].push(data[i]['DISTRICT']);
-                            dataset2015[j].push(data[i]["VEHICLETHEFT"]); 
-                            dataset2015[j].push(data[i]["PROSTITUTION"]); 
-                            j++; 
-                        };
-                    };
-
-                    x=dataset2003;
-
-                    var arrayVehicletheft2003=[];
-
-                    for (var i =0, l=dataset2003.length ; i < l; i++) {
-                        arrayVehicletheft2003.push(dataset2003[i][1]);
-                    };
-
-                    var arrayProstitution2003=[];
-
-                    for (var i =0, l=dataset2003.length ; i < l; i++) {
-                        arrayProstitution2003.push(dataset2003[i][2]);
-                    };
-
-                    //var maxProstitution2003=Math.max(arrayProstitution2003);
-
-                    function getMaxOfArray(numArray) {
-                        return Math.max.apply(null, numArray);
-                    }
-
-                    var maxProstitution2003=getMaxOfArray(arrayProstitution2003);
-                    var maxVehicletheft2003=getMaxOfArray(arrayVehicletheft2003);
-
-                    var xScale = d3.scale.linear()
-                                         .domain([0, d3.max(dataset2003, function(d) { return d[2]; })])
-                                         .range([padding, w - padding * 2]);
-
-                    var yScale = d3.scale.linear()
-                                         .domain([0, d3.max(dataset2003, function(d) { return d[1]; })])
-                                         .range([h - padding, padding]);
-
-                    var rScale = d3.scale.linear()
-                                         .domain([0, d3.max(dataset2003, function(d) { return d[1]; })+d3.max(dataset2003, function(d) { return d[2]; })])
-                                         .range([1, 20]);
-
-                    //Define X axis
-                    var xAxis = d3.svg.axis()
-                                      .scale(xScale)
-                                      .orient("bottom")
-                                      .ticks(7);
-
-                    //Define Y axis
-                    var yAxis = d3.svg.axis()
-                                      .scale(yScale)
-                                      .orient("left")
-                                      .ticks(7);
-
-                    //Create SVG element
-                    var svg = d3.select("body")
-                                .append("svg")
-                                .attr("width", w)
-                                .attr("height", h);
-
-                    //Create circles
-                    svg.selectAll("circle")
-                       .data(dataset2003)
-                       .enter()
-                       .append("circle")
-                       .attr("cx", function(d) {
-                            return xScale(d[2]);
-                       })
-                       .attr("cy", function(d) {
-                            return yScale(d[1]);
-                       })
-                       .attr("r", function(d) {
-                            return rScale(d[2]+d[1]);
-                        })
-                       .attr('fill',function(d){
-                            var a=d[1];
-                            var b=d[2];
-                            var c=maxVehicletheft2003;
-                            var d=maxProstitution2003;
-                            var e=Math.floor(((a+b)/(c+d))*256);
-                            return 'rgb('+ e +','+ (255-e) +',0)';
-                       });
-
-                    svg.append("clipPath")    
-                        .attr("id", "chart-area")   
-                        .append("rect") 
-                        .attr("x", padding)
-                        .attr("y", padding-20)
-                        .attr("width", w - padding * 3+20)
-                        .attr("height", h-padding*2+20);
-
-                    //Add labels   
-                    svg.selectAll("text")
-                               .data(dataset2003)
-                               .enter()
-                               .append("text")
-                               .text(function(d) {
-                                    return d[0];
-                               })
-                               .attr("x", function(d) {
-                                    return xScale(d[2])+rScale(d[2]+d[1])/Math.sqrt(2);
-                               })
-                               .attr("y", function(d) {
-                                    return yScale(d[1])-rScale(d[2]+d[1])/Math.sqrt(2);
-                               })
-                               .attr("font-family", "sans-serif")
-                               .attr("font-size", "11px")
-                               .attr("fill", "black");
-                    
-                    //Create X axis
-                    svg.append("g")
-                        .attr("class", "x axis")
-                        .attr("transform", "translate(0," + (h - padding) + ")")
-                        .call(xAxis);
-                    
-                    //Create Y axis
-                    svg.append("g")
-                        .attr("class", "y axis")
-                        .attr("transform", "translate(" + padding + ",0)")
-                        .call(yAxis);
-
-                    svg.append("rect")                             
-                       .attr("id", "circles")                   
-                       .attr("clip-path", "url(#chart-area)")   
-                       .selectAll("circle")                     
-                       .data(dataset2003)
-                       .enter()
-                       .append("circle");
-
-                    d3.select("p")
-                        .on("click", function() {
-
-                            if (x==dataset2003){
-                                dataset = dataset2015;
-                                x=dataset2015;
-                            }    
-                            else {
-                                dataset = dataset2003;
-                                x=dataset2003;
-                            }
-
-                            //Update all circles
-                            svg.selectAll("circle")
-                               .data(dataset)
-                               .transition()
-                               .duration(1000)
-                               .attr("cx", function(d) {
-                                    return xScale(d[2]);
-                               })
-                               .attr("cy", function(d) {
-                                    return yScale(d[1]);
-                               })
-                               .attr("r", function(d) {
-                                return rScale(d[2]+d[1]);
-                                })
-                               .attr('fill',function(d){
-                                    var a=d[1];
-                                    var b=d[2];
-                                    var c=maxVehicletheft2003;
-                                    var d=maxProstitution2003;
-                                    var e=Math.floor(((a+b)/(c+d))*256);
-                                    return 'rgb('+ e +','+ (255-e) +',0)';
-                               });
-
-                            svg.selectAll("text")
-                                   .data(dataset)
-                                   .transition()   
-                                   .duration(1000)
-                                   .text(function(d) {
-                                        return d[0];
-                                   })
-                                   .attr("x", function(d) {
-                                    return xScale(d[2])+rScale(d[2]+d[1])/Math.sqrt(2);
-                                   })
-                                   .attr("y", function(d) {
-                                        return yScale(d[1])-rScale(d[2]+d[1])/Math.sqrt(2);
-                                   });
-
-                        });
-                });
-        
-             
-        </script>
-        <button id="ButtonFull">2003</button>
-        <button id="ButtonTillDate">2015 </button>>
-        <div id="chart2">
         </div> 
-        <p>Click on the text to toggle between 2003 and 2015.</p><br> 
-        <script type="text/javascript">
-          var margin ={top:20, right:30, bottom:30, left:40},
-          width=960-margin.left - margin.right, 
-          height=300-margin.top-margin.bottom;
-
-                var datasetFull=[];
-                var datasetTillDate=[];
-                var dataset;
-
-                d3.json("2003.json", function(data) {
-                    for (var i = 0, l=data.length, j=0, k=0; i <l; i++) {
-                        if (data[i]['Year']==2003) {
-                            datasetFull.push([]);
-                            datasetFull[j].push(data[i]["DISTRICT"]);
-                            datasetFull[j].push(data[i]["VEHICLETHEFT"]); 
-                            j++;
-                        }
-                        else {
-                            datasetTillDate.push([]);
-                            datasetTillDate[k].push(data[i]["DISTRICT"]);
-                            datasetTillDate[k].push(data[i]["VEHICLETHEFT"]); 
-                            k++; 
-                        }
-                    };
-
-                    dataset=datasetFull;
-
-                    function getMaxOfArray(numArray) {
-                        return Math.max.apply(null, numArray);
-                    }
-
-                    var maxCollision=getMaxOfArray(dataset);
-
-                    var x = d3.scale.ordinal()
-                                    .domain(dataset.map(function(d){ return d[0]; }))
-                                    .rangeRoundBands([0, width], .1);
-
-                    var y = d3.scale.linear()
-                                    .domain([0, d3.max(dataset, function(d) { return d[1]; })])
-                                    .range([height, 0]);
-
-                    var barHeight = d3.scale.linear()
-                                         .domain([0, d3.max(dataset, function(d) { return d[1]; })])
-                                         .range([1, height]);
-
-                    //Define X axis
-                    var xAxis = d3.svg.axis()
-                                      .scale(x)
-                                      .orient("bottom");
-
-                    //Define Y axis
-                    var yAxis = d3.svg.axis()
-                                      .scale(y)
-                                      .orient("left");
-
-                    //Create SVG element
-                    var chart = d3.select("#chart2")  
-                                  .append("svg")  //append svg element inside #chart
-                                  .attr("width", width+(2*margin.left)+margin.right)    //set width
-                                  .attr("height", height+margin.top+margin.bottom);
-
-                    var bar = chart.selectAll("g")
-                                    .data(dataset)
-                                    .enter()
-                                    .append("g")
-                                    .attr("transform", function(d, i){
-                                      return "translate("+x(d[0])+", 0)";});
-                                    
-                    //Create circles
-                    bar.append("rect")
-                        .attr("y", function(d) { 
-                          return y(d[1]); 
-                        })
-                        .attr("x", function(d,i){
-                          return 40;
-                        })
-                        .attr("height", function(d) { 
-                          return barHeight(d[1]); 
-                        })
-                        .attr("width", x.rangeBand());
-
-                    bar.append("text")
-                        .attr("x", x.rangeBand()/2+45)
-                        .attr("y", function(d) { return y(d[1]) + 2; })
-                        .attr("dy", ".75em")
-                        .text(function(d) { return d[1]; })
-                        .style('fill', 'black');
-
-                    chart.append("g")
-                        .attr("class", "x axis")
-                        .attr("transform", "translate("+margin.left+","+ height+")")        
-                        .call(xAxis)
-                        .selectAll("text")  
-                            .style("text-anchor", "end")
-                            .attr("dx", "-.8em")
-                            .attr("dy", ".15em")
-                            .attr("transform", "rotate(-65)" );
-
-                    chart.append("g")
-                        .attr("class", "y axis")
-                        .attr("transform", "translate("+margin.left+",0)")
-                        .call(yAxis)
-                        .append("text")
-                        .attr("transform", "rotate(-90)")
-                        .attr("y", 6)
-                        .attr("dy", ".71em")
-                        .style("text-anchor", "end")
-                        .text("Occurrence");
-
-                    d3.select("#ButtonFull")
-                        .on("click", function() {
-                            var dataset=datasetFull;
-
-                            y.domain([0, d3.max(dataset, function(d) { return d[1]; })]);
-
-                            chart.select(".y.axis")
-                                .transition()
-                                .duration(1000)
-                                .call(yAxis);
-                                    
-                            //Update all bars
-                            bar.select("rect")
-                               .data(dataset)
-                               .transition()
-                               .duration(1000)
-                               .attr("y", function(d) { 
-                                  return y(d[1]); 
-                                })
-                                .attr("height", function(d) { 
-                                  return barHeight(d[1]); 
-                                });
-
-                            bar.select("text")
-                                   .data(dataset)
-                                   .transition()   
-                                   .duration(1000)
-                                    .attr("y", function(d) { return y(d[1]) + 2; })
-                                    .attr("dy", ".75em")
-                                    .text(function(d) { return d[1]; });
-
-
-
-                        }); 
-
-                      d3.select("#ButtonTillDate")
-                        .on("click", function() {
-                            var dataset=datasetTillDate;
-
-                            y.domain([0, d3.max(dataset, function(d) { return d[1]; })]);
-
-                            chart.select(".y.axis")
-                                .transition()
-                                .duration(1000)
-                                .call(yAxis);
-                                    
-                            //Update all bars
-                            bar.select("rect")
-                               .data(dataset)
-                               .transition()
-                               .duration(1000)
-                               .attr("y", function(d) { 
-                                  return y(d[1]); 
-                                })
-                                .attr("height", function(d) { 
-                                  return height/284*d[1]; 
-                                });
-
-                            bar.select("text")
-                                   .data(dataset)
-                                   .transition()   
-                                   .duration(1000)
-                                    .attr("y", function(d) { return y(d[1]) + 2; })
-                                    .attr("dy", ".75em")
-                                    .text(function(d) { return d[1]; });
-
-                            
-
-
-                        });
-
-                    
-                });
-
-        </script>>
         <br>
 
-        
+        <!--Assignment 2C-->
+        <div>
+            <h3>Assignment 2C: One barchart and (at least) two datasets</h3><br>
+            <p>This barchart visualization should also pull data from an associated CSV/JSON file. Here, Once again, you should use appropriate dynamic <br>scales (see chapter 7 of IDV). Additional requirements for the visualizations are listed below
+        <ul>
+        <li>This visualization consists of one histogram, which is able to switch between at least two datasets. You get to choose something interesting<br> from Week 3's exercises.</li>
+        <li>Click on something to toggle between the two (or more) datasets.</li>
+        <li>Feel free to color and label according to your own taste.</li>
+        </ul></p>
 
+        </div>
+        <div class="chart" id="chart3">
+            <div>
+                <button type="button" id="buttonAssault">ASSAULT</button>
+                <button type="button" id="buttonBurglary">BURGLARY</button>
+            </div>
+            <p id="2C">Historical data for Assult</p>
+        </div> 
+        
+        <script type="text/javascript" src="2B.js"></script>
+        <script type="text/javascript" src="2C.js"></script>
     </body>
 </html>
