@@ -1,32 +1,28 @@
-/********************
- ******** 2D ********
- ********************/
-var w = 800;
-var h = 800;
-//Define default path generator
+var w = 580;
+var h = 580;
+
 var projection = d3.geo.mercator()
-    .scale(270000)
-    .center([-122.4310, 37.7742]) // centers map at given coordinates
-    .translate([w / 2, h / 2]); // translate map to svg
-//path generator
+    .scale(200000)
+    .center([-122.4310, 37.7742]) 
+    .translate([w / 2, h / 2]); 
+
 var path = d3.geo.path().projection(projection);
-//Create SVG element
-var dVis = d3.select("#vis")
+
+var chart4 = d3.select("#chart4")
     .append("svg")
     .attr("width", w)
     .attr("height", h);
-//Load in GeoJSON data
+
 d3.json("https://raw.githubusercontent.com/suneman/socialdataanalysis2016/master/files/sfpddistricts.geojson", function(json) {
-    console.log(json);
-    //Bind data and create one path per GeoJSON feature
-    dVis.selectAll("path")
+    
+    chart4.selectAll("path")
         .data(json.features)
         .enter()
         .append("path")
         .attr("d", path)
-        .style("fill", "rgb(90,140,180)");
+        .style("fill", "rgb(50,100,120)");
 
-    dVis.selectAll("text")
+    chart4.selectAll("text")
         .data(json.features)
         .enter()
         .append("svg:text")
@@ -40,55 +36,55 @@ d3.json("https://raw.githubusercontent.com/suneman/socialdataanalysis2016/master
             return path.centroid(d)[1];
         })
         .attr("text-anchor", "middle")
-        .attr('font-size', '9pt');
+        .style("fill","white")
+        .attr('font-size', '8pt');
 
-    plotProstitution("kmeans6");
+    updatePoints("kmeans2");
 });
-var border = 1;
-var bordercolor = 'black';
-var borderPath = dVis.append("rect")
+
+var borderPath = chart4.append("rect")
     .attr("x", 0)
     .attr("y", 0)
     .attr("height", h)
     .attr("width", w)
-    .style("stroke", bordercolor)
-    .style("fill", "none")
-    .style("stroke-width", border);
+    .style("stroke", 'black')
+    .style("stroke-width", '1px')
+    .style("fill", "rgb(135,206,250)");
 
 
-function updateKmeans(set) {
-    plotProstitution("kmeans" + set);
+function updater(x) {
+    updatePoints("kmeans" + x);
 }
 
-function plotProstitution(input) {
-    var label = dVis.append("text")
+function updatePoints(x) {
+    var label = chart4.append("text")
         .attr("x", 40)
         .attr("y", 40)
-        .attr("dy", ".45em")
-        .text("Loading data...");
-    // Clear all data points
-    dVis.selectAll("circle")
+        .attr("dy", ".5em");
+
+    chart4.selectAll("circle")
         .remove();
 
-    var points = "data/" + input + "_points.csv";
-    var centroids = "data/" + input + "_centroids.csv";
+    var points = "geolocations/" + x + "point.csv";
+    var centres = "geolocations/" + x + "centre.csv";
 
     var color = d3.scale.linear()
         .domain([0, 1, 2, 3, 4, 5])
         .range([
-            "rgba(255,0,0,0.2)",
-            "rgba(255,255,0,0.2)",
-            "rgba(0,255,0,0.2)",
-            "rgba(255,0,255,0.2)",
-            "rgba(0,255,255,0.2)",
-            "rgba(255,128,0,0.2)"
+            "rgb(200,200,0)",
+            "rgb(0,200,0)",
+            "rgb(200,0,0)",
+            "rgb(75,0,130)",
+            "rgb(200,0,150)",
+            "rgb(0,0,200)"
+            
         ]);
-    // Add the data
+    
     d3.csv(points, function(data) {
         dataset = data.map(function(d) { return [+d["x"], +d["y"], +d["label"]]; });
 
         //Create circles
-        dVis.selectAll("points")
+        chart4.selectAll("points")
             .data(dataset)
             .enter()
             .append("circle")
@@ -99,34 +95,24 @@ function plotProstitution(input) {
                 return projection([d[0], d[1]])[1];
             })
             .attr("r", function(d) {
-                return 3;
+                return 2;
             })
             .style("fill", function(d) {
                 return color(d[2]);
             });
-        // Add the center points
-        d3.csv(centroids, function(data) {
+        
+        d3.csv(centres, function(data) {
             data.forEach(function(d) {
                 d.x = +d.x;
                 d.y = +d.y;
                 d.label = +d.label;
             });
 
-            //Create circles
-            dVis.selectAll("centroids")
+            
+            chart4.selectAll("centres")
                 .data(data)
                 .enter()
                 .append("circle")
-                .transition()  // Transition from old to new
-                .duration(1000)  // Length of animation
-                .each("start", function() {  // Start animation
-                    d3.select(this)  // 'this' means the current element
-                        .attr("stroke", "white")  // Change color
-                        .attr("r", 0);  // Change size
-                })
-                .delay(function(d, i) {
-                    return i / data.length * 500;  // Dynamic delay (i.e. each item delays a little longer)
-                })
                 .attr("cx", function(d) {
                     return projection([d.x, d.y])[0];
                 })
@@ -136,11 +122,9 @@ function plotProstitution(input) {
                 .attr("r", function(d) {
                     return 16;
                 })
-                .style("stroke-width", '2px')
+                .style("stroke-width", '3px')
                 .style("stroke", 'black')
-                .style("fill", 'none');
-
-            label.remove();
+                .style("fill", "rgba(0,0,0,0.3)");
         });
 
     });
