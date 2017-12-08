@@ -1,6 +1,6 @@
 var margin ={top:20, right:30, bottom:30, left:40},
     width=960-margin.left - margin.right,
-    height=300-margin.top-margin.bottom;
+    height=330-margin.top-margin.bottom;
 
                 var datasetASSAULT=[];
                 var datasetBURGLARY=[];
@@ -104,7 +104,7 @@ var margin ={top:20, right:30, bottom:30, left:40},
                         .attr("y", 6)
                         .attr("dy", ".71em")
                         .style("text-anchor", "end")
-                        .text("Occurrence");
+                        .text("Degree");
 
                     d3.select("#buttonBurglary")
                         .on("click", function() {
