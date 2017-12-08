@@ -1,102 +1,102 @@
 [
   {
     "YEAR":"Mystery",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.39
   },
   {
     "YEAR":"Romance",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.53
   },
   {
     "YEAR":"History",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.30
   },
   {
     "YEAR":"Sport",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.45
   },
   {
     "YEAR":"Sci-Fi",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.32
   },
   {
     "YEAR":"Family",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.49
   },
   {
     "YEAR":"Horror",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.39
   },
   {
     "YEAR":"Musical",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.52
   },
   {
     "YEAR":"Crime",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.30
   },
   {
     "YEAR":"Drama",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.43
   },
   {
     "YEAR":"Fantasy",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.38
   },
   {
     "YEAR":"War",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.31
   },
   {
     "YEAR":"Animation",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.47
   },
   {
     "YEAR":"Music",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.60
   },
   {
     "YEAR":"Adventure",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.36
   },
   {
     "YEAR":"Action",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.29
   },
   {
     "YEAR":"Comedy",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.51
   },
   {
     "YEAR":"Western",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.37
   },
   {
     "YEAR":"Thriller",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.34
   },
   {
     "YEAR":"Biography",
-    "TYPE":"ASSAULT",
+    "TYPE":"BURGLARY",
     "NUMBER":5.41
   }
 ]

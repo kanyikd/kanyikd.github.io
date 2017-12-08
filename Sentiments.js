@@ -1,5 +1,5 @@
 var margin ={top:20, right:30, bottom:90, left:40},
-    width=960-margin.left - margin.right,
+    width=760-margin.left - margin.right,
     height=330-margin.top-margin.bottom;
 
                 var datasetASSAULT=[];
@@ -8,7 +8,7 @@ var margin ={top:20, right:30, bottom:90, left:40},
 
                 d3.json("Sentiments.json", function(data) {
                     for (var i = 0, l=data.length, j=0, k=0; i <l; i++) {
-                        if (data[i]['TYPE']=="ASSAULT") {
+                        if (data[i]['TYPE']=="BURGLARY") {
                             datasetASSAULT.push([]);
                             datasetASSAULT[j].push(data[i]["YEAR"]);
                             datasetASSAULT[j].push(data[i]["NUMBER"]);
