@@ -1,5 +1,5 @@
-var margin ={top:20, right:30, bottom:50, left:40},
-    width=760-margin.left - margin.right,
+var margin ={top:20, right:30, bottom:70, left:40},
+    width=560-margin.left - margin.right,
     height=330-margin.top-margin.bottom;
 
                 var datasetASSAULT=[];
@@ -77,7 +77,7 @@ var margin ={top:20, right:30, bottom:50, left:40},
                           return barHeight(d[1]);
                         })
                         .attr("width", x.rangeBand())
-                        .style('fill', 'blue');;
+                        .style('fill', '#000080');;
 
                     bar.append("text")
                         .attr("x", x.rangeBand()/2+35)
