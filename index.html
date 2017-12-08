@@ -38,7 +38,7 @@
         </div>
 
         <div>
-            <h3>Section 1 - The Giants of Hollywood</h3>
+            <h3>Section 1 - Connections in Hollywood</h3>
             <h4>Introduction of the dataset</h4>
             <p>
               In order to conduct our investigation, first we have to understand the structure of the dataset.<br>
@@ -121,13 +121,231 @@
           The shape of the degree-distribution looks just like a real network's, as expected.
         </p>
         <p>
-          Now we can find the TOP 10 people with the most connections.
+          Now we can find the nodes with the highest degrees:
         </p>
-        <div class="chart" id="chart3">
-            <p id="2C">TOP 10 people with most connections</p>
-        </div>
-        </div>
+          <div class="chart" id="chart3">
+              <p id="2C">TOP 10 people with most connections</p>
+          </div>
+        <p>
+          ( Suprisingly no director made it to the TOP 10! )
+        </p>
+        <p>
+          To uncover the reason why the centrality of these actors/actresses is so high in the network we set up the following 3 hypothesis:
+        </p>
+        <ol>
+            <li>Their movies make the most revenue.</li>
+            <li>They are the most popular among fans.</li>
+            <li>They just happen to make a lot of movies.</li>
+        </ol>
+        <p>
+          We will test these hypothesis in the following way:
+        </p>
+        <ol>
+            <li>Calculate the total revenue reached by all the movies in which the actor played.</li>
+            <li>Calculate the average rating for the movies in which the actor played.</li>
+            <li>Count the number of movie appearances.</li>
+        </ol>
+        <p>
+          We will compare these stats to the overall picture and see how they rank idividually in each category.<br>
+          After that we calculate correlation coefficient to their degree to see which factor has the most significant impact on the number of connections.
+        </p>
+        <p>
+          <strong>Their ranks of the total 2593 list members in terms of total movie revenue:</strong>
+        </p>
 
+        <table style="width:500">
+          <tr>
+            <th>Name</th>
+            <th>Rank</th>
+            <th>Revenue</th>
+          </tr>
+          <tr>
+            <td>Hugh Jackman</td>
+            <td>#16</td>
+            <td>1460 M</td>
+          </tr>
+          <tr>
+            <td>Mark Wahlberg</td>
+            <td>#14</td>
+            <td>1490 M</td>
+          </tr>
+          <tr>
+            <td>Brad Pitt</td>
+            <td>#40</td>
+            <td>1090 M</td>
+          </tr>
+          <tr>
+            <td>Christian Bale</td>
+            <td>#7</td>
+            <td>1650 M</td>
+          </tr>
+          <tr>
+            <td>Tom Hardy</td>
+            <td>#60</td>
+            <td>925 M</td>
+          </tr>
+          <tr>
+            <td>Channing Tatum</td>
+            <td>#54 </td>
+            <td>951 M</td>
+          </tr>
+          <tr>
+            <td>Anne Hathaway</td>
+            <td>#8</td>
+            <td>1641 M</td>
+          </tr>
+          <tr>
+            <td>Chloe Grace Moretz</td>
+            <td>#166</td>
+            <td>468 M</td>
+          </tr>
+          <tr>
+            <td>Jake Gyllenhaal</td>
+            <td>#200</td>
+            <td>405 M</td>
+          </tr>
+          <tr>
+            <td>Cate Blanchett</td>
+            <td>#23</td>
+            <td>1289 M</td>
+          </tr>
+        </table><br>
+        <Strong>Correlation coefficient = 0.50</Strong><br>
+        In terms of revenue, only two of them could make it tothe top 10. The correlation is weak.
+        <p>
+          <strong>Their ranks in terms of average movie ratings:</strong>
+        </p>
+
+        <table style="width:500">
+          <tr>
+            <th>Name</th>
+            <th>Rank</th>
+            <th>Rating</th>
+          </tr>
+          <tr>
+            <td>Hugh Jackman</td>
+            <td>#610</td>
+            <td>7.14</td>
+          </tr>
+          <tr>
+            <td>Mark Wahlberg</td>
+            <td>#965</td>
+            <td>6.77</td>
+          </tr>
+          <tr>
+            <td>Brad Pitt</td>
+            <td>#366</td>
+            <td>7.48</td>
+          </tr>
+          <tr>
+            <td>Christian Bale</td>
+            <td>#517</td>
+            <td>7.25</td>
+          </tr>
+          <tr>
+            <td>Tom Hardy</td>
+            <td>#426</td>
+            <td>7.36</td>
+          </tr>
+          <tr>
+            <td>Channing Tatum</td>
+            <td>#1324 </td>
+            <td>6.31</td>
+          </tr>
+          <tr>
+            <td>Anne Hathaway</td>
+            <td>#775</td>
+            <td>6.98</td>
+          </tr>
+          <tr>
+            <td>Chloe Grace Moretz</td>
+            <td>#1057</td>
+            <td>6.7</td>
+          </tr>
+          <tr>
+            <td>Jake Gyllenhaal</td>
+            <td>#429</td>
+            <td>7.36</td>
+          </tr>
+          <tr>
+            <td>Cate Blanchett</td>
+            <td>#703</td>
+            <td>7.05</td>
+          </tr>
+        </table><br>
+        <Strong>Correlation coefficient = 0.18</Strong><br>
+        In terms of ratings all of them ended up in the with a pretty average rank. There is no correlation.
+        <p>
+          <strong>Their ranks in terms of number of movies:</strong>
+        </p>
+
+        <table style="width:500">
+          <tr>
+            <th>Name</th>
+            <th>Rank</th>
+            <th>Num of movies</th>
+          </tr>
+          <tr>
+            <td>Hugh Jackman</td>
+            <td>#2</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <td>Mark Wahlberg</td>
+            <td>#1</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>Brad Pitt</td>
+            <td>#3</td>
+            <td>13</td>
+          </tr>
+          <tr>
+            <td>Christian Bale</td>
+            <td>#3</td>
+            <td>13</td>
+          </tr>
+          <tr>
+            <td>Tom Hardy</td>
+            <td>#7</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <td>Channing Tatum</td>
+            <td>#7 </td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <td>Anne Hathaway</td>
+            <td>#7</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <td>Chloe Grace Moretz</td>
+            <td>#12</td>
+            <td>11</td>
+          </tr>
+          <tr>
+            <td>Jake Gyllenhaal</td>
+            <td>#12</td>
+            <td>11</td>
+          </tr>
+          <tr>
+            <td>Cate Blanchett</td>
+            <td>#12</td>
+            <td>11</td>
+          </tr>
+        </table><br>
+        <Strong>Correlation coefficient = 0.91</Strong><br>
+        The number of movies made seems to be to most influential factor. The correlation is very strong.
+        <h4>Conclusion</h4>
+        <p>
+          <Strong>We can conclude that the most significant factor that determines an individual's centrality in the network is the number of movies he/she appeared in.<br>
+          The more movies they made the more connections the have in the industry. This result seems to be reasonable and somewhat intuitive as well.
+        </Strong>
+        </p>
+        </div>
+<!--
         <div class="chart" id="chart2">
             <div>
                 <button type="button" id="button2003">2003</button>
@@ -138,9 +356,10 @@
         </div>
         <br>
 
-        <!--Assignment 2C-->
+-->
         <div>
-            <h3>Assignment 2C: One barchart and (at least) two datasets</h3><br>
+            <h3>Section 2 - Reading between the lines</h3><br>
+<!--
             <p>This barchart visualization should also pull data from an associated CSV/JSON file. Here, Once again, you should use appropriate dynamic <br>scales (see chapter 7 of IDV). Additional requirements for the visualizations are listed below
         <ul>
         <li>This visualization consists of one histogram, which is able to switch between at least two datasets. You get to choose something interesting<br> from Week 3's exercises.</li>
@@ -157,24 +376,7 @@
             <p id="2C">Historical data for Assult</p>
         </div>
         <div>
-        <h3>Assignment 2D: Visualizing geodata</h3>
-        <p>
-                For this final sub-assignment we will visualize your results from the KK-means exercise from week 5.<br>
-
-        <ul>
-        <li>We try our luck with an geospatial visualization displaying results for K=2,…,6K=2,…,6. The overall idea is each value of KK has an associated view (you should<br> be able to toggle between these) where each of the KK centroids is shown as a large colored dot (you choose the color scheme), and all GPS points<br> belonging to that centroid are colored using a related RGB value. My plot looks like this.</li>
-        <li>Also please add a link to your IPython notebook containing only the solution to the KK-means exercise from week 5 so we can check it out, if necessary.</li>
-        </ul>
-            </p>
-        </div>
-        <div id="chart4">
-
-            <button type="button" onclick="updater(2)">KMEANS=2</button><br>
-            <button type="button" onclick="updater(3)">KMEANS=3</button><br>
-            <button type="button" onclick="updater(4)">KMEANS=4</button><br>
-            <button type="button" onclick="updater(5)">KMEANS=5</button><br>
-            <button type="button" onclick="updater(6)">KMEANS=6</button><br>
-        </div>
+-->
         <a href="http://kanyikd.github.io/Exercise.ipynb" target="_blank">Download notebook</a><br>
 
         <script type="text/javascript" src="2B.js"></script>
