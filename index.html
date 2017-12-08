@@ -23,48 +23,106 @@
 
         <!--Assignment 2A-->
         <div>
-            <h3>Assignment 2A: Simple SVG stuff</h3><br>
-            <p>Put something simple on the web. For this exercise, I want you to modify a bit of code from IDV Chapter 3.<br>
-                <ul>
-                <li>Create an new version of the 5 SVG squares in example 3-22. Make the following modifications</li>
-                <li>Add a gray boundary of width 2 around each square.</li>
-                <li>Make the squares increasingly transparant from left to right.</li>
-                <li>Make the squares 80 by 80 instead of 30 by 30.</li>
-                <li>Make the squares go from bottom of the SVG element to the top instead of the other way around.</li>
-                </ul>
+            <h2>Project Assignment B - The IMDB Network</h2>
+            <p>In this project we will take a look at the 1000 most popular movies from the past 10 years.
+              The dataset is available <a href="https://www.kaggle.com/PromptCloudHQ/imdb-data">on this link</a>.<br>
+              The project is devided into two main sections:
+                <ol>
+                <li><strong>In the first part we will investigate who are the most influential people in the movie industry
+                  based on the available information and the structure of the social network of Hollywood.</strong></li><br>
+                <li><strong>In the second part the main focus will be on the content of these 1000 movies. <br>
+                  We will try to determine what are the most descriptive words being used in each genre and analyise
+                  their sentiment based on their plot. </strong></li>
+              </ol>
                 </p>
-
         </div>
-        <div>
-            <svg width="280" height="140">
-                <rect x="0" y="60" width="80" height="80" fill="purple" opacity="1" stroke="gray" stroke-width="2"></rect> 
-                <rect x="50" y="45" width="80" height="80" fill="blue" opacity="0.8" stroke="gray" stroke-width="2"></rect>
-                <rect x="100" y="30" width="80" height="80" fill="green" opacity="0.6" stroke="gray" stroke-width="2"></rect>
-                <rect x="150" y="15" width="80" height="80" fill="yellow" opacity="0.4" stroke="gray" stroke-width="2"></rect>
-                <rect x="200" y="0" width="80" height="80" fill="red" opacity="0.2" stroke="gray" stroke-width="2"></rect>
-            </svg>
-        </div>
-        <br>
 
-        <!--Assignment 2B-->
         <div>
-            <h3>Assignment 2B: One scatter plot and two datasets</h3><br>
+            <h3>Section 1 - The Giants of Hollywood</h3>
+            <h4>Introduction of the dataset</h4>
             <p>
-                We will be visualizing SF crime data (the same dataset we've used in all the exerciese). This scatter plot visualization should pull data<br> from an associated CSV/JSON file (it's easiest to use Python to generate a nicely formatted file that contains only the data you need for<br> the visualization). You should use appropriate dynamic scales (see chapter 7 of IDV). Additional requirements for the visualizations <br>are listed below<br>
-                <ul>
-
-<li>Each point should correspond to a district</li>
-<li>Points should be labeled</li>
-<li>The radius of a point should be proportional to total number of crimes in that district</li>
-<li>The xx-axis should correspond to total number of PROSTITUTION incidents</li>
-<li>The yy-axis should correspond to total number of VEHICLE THEFT incidents</li>
-<li>Click on something (your choice) to toggle between data from 2003 and 2015 - there must be a smooth transition.</li>
-<li>Axes should not change but fit data from both years (e.g. when setting up the dynamic scales, the max values should be set by taking both datasets into arrount).</li>
-<li>Explain in your own words why you think I want the axes to be the same for both years? (Even though you know how to make axes adapt to the data values.)
-<ul><li>This way it becomes easy to visually compare the data from the two different year and highlight the changes.</li></ul>
-</li>
-            </ul>
+              In order to conduct our investigation, first we have to understand the structure of the dataset.<br>
+              It stores the following 12 attributes of the 1000 movies:
             </p>
+              <ol>
+              <li>ID</li>
+                 <li>Title</li>
+                 <li>Genre</li>
+                 <li>Description</li>
+                 <li>Director</li>
+                 <li>Actors</li>
+                 <li>Year</li>
+                 <li>Runtime (Minutes)</li>
+                 <li>Rating</li>
+                 <li>Votes</li>
+                 <li>Revenue (Millions)</li>
+                 <li>Metascore</li>
+            </ol>
+            <p>
+              One example looks as follows:
+            </p>
+            <ol>
+                <li>1</li>
+                 <li>Guardians of the Galaxy</li>
+                 <li>Action,Adventure,Sci-Fi</li>
+                 <li>A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe.</li>
+                 <li>James Gunn</li>
+                 <li>Chris Pratt,Vin Diesel,Bradley Cooper,Zoe Saldana</li>
+                 <li>2014</li>
+                 <li>121</li>
+                 <li>8.1</li>
+                 <li>757074</li>
+                 <li>333.13</li>
+                 <li>76</li>
+            </ol>
+            <p>
+              For the sake of this part of our analysis we will concentrate on the following attributes:
+            </p>
+              <ul>
+                 <li>Director</li>
+                 <li>Actors</li>
+                 <li>Rating</li>
+                 <li>Revenue (Millions)</li>
+            </ul>
+            <p>
+              With these information at hand, our two main questions are:
+            </p>
+              <ol>
+                  <li><strong>Who are the TOP 10 most well-connected individuals in the industry?</strong></li>
+                 <li><strong>How much power do they hold?</strong></li>
+            </ol>
+            <h4>Analysis</h4>
+            <ol>
+                <li><strong>Who are the TOP 10 most well-connected individuals in the industry?</strong></li>
+          </ol>
+          <p>
+          To answer this question we used the available data to create a graph that represents the relationship between the individuals who were involved with each movie.<br>
+          This social graph is created so that every person (actor/director) represents a node and two people are connected with an edge if they worked together on a movie.<br/>
+          (The data preparation process and detailed analysis can be found in the IPython notebook.)
+        </p>
+        <p>
+        Using NetworkX to plot the network we get a very centralized structure:
+        </p>
+          <img src="Images/CompleteGraph.png">
+        <p>
+        Just by looking at it with naked eye, no dominant elements can be identified.<br>
+        To make a thorough analysis, we have to start at the basics stats of the network:
+        <ul>
+            <li>Number of nodes:  2593</li>
+            <li>Number of edges:  9465</li>
+            <li>Maximum degree:   55</li>
+            <li>Minimum degree:   3</li>
+            <li>Average degree:   7.30</li>
+            <li>Median degree:    4</li>
+        </ul>
+        </p>
+        <img src="Images/Histogram.png">
+        <p>
+          The shape of the degree-distribution strongly resembles the shape of a real network.
+        </p>
+        <p>
+          Now we can find the TOP 10 people with the most connections.
+        </p>
         </div>
 
         <div class="chart" id="chart2">
@@ -74,7 +132,7 @@
             </div>
             <p id="2B">Crime data from 2003</p>
 
-        </div> 
+        </div>
         <br>
 
         <!--Assignment 2C-->
@@ -94,7 +152,7 @@
                 <button type="button" id="buttonBurglary">BURGLARY</button>
             </div>
             <p id="2C">Historical data for Assult</p>
-        </div> 
+        </div>
         <div>
         <h3>Assignment 2D: Visualizing geodata</h3>
         <p>
@@ -107,7 +165,7 @@
             </p>
         </div>
         <div id="chart4">
-            
+
             <button type="button" onclick="updater(2)">KMEANS=2</button><br>
             <button type="button" onclick="updater(3)">KMEANS=3</button><br>
             <button type="button" onclick="updater(4)">KMEANS=4</button><br>
@@ -115,7 +173,7 @@
             <button type="button" onclick="updater(6)">KMEANS=6</button><br>
         </div>
         <a href="http://kanyikd.github.io/Exercise.ipynb" target="_blank">Download notebook</a><br>
-       
+
         <script type="text/javascript" src="2B.js"></script>
         <script type="text/javascript" src="2C.js"></script>
         <script type="text/javascript" src="2D.js"></script>
