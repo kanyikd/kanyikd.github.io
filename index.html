@@ -426,7 +426,103 @@
                   <div class="chart" id="chart4">
                       <p id="2C">Average sentiment score by genre</p>
                   </div>
+                  <p>
+                    Suprisingly, there is no significant difference between any two genre.<br>
+                    To uncover why this might be the case we will take a look at the most common words used in each category. We are doing that by creating word clouds.
+                  </p>
 
+                  <table style="width:100%" >
+                    <tr>
+                      <td><h3>Mystery</h3></td>
+                      <td><h3>Romance</h3></td>
+                      <td><h3>History</h3></td>
+                    </tr>
+                    <tr>
+                      <td><img src="Images/Mystery.png"></td>
+                      <td><img src="Images/Romance.png"></td>
+                      <td><img src="Images/History.png"></td>
+                    </tr>
+                    <tr>
+                      <td><h3>Sport</h3></td>
+                      <td><h3>Sci-Fi</h3></td>
+                      <td><h3>Family</h3></td>
+                    </tr>
+                    <tr>
+                      <td><img src="Images/Sport.png"></td>
+                      <td><img src="Images/Sci-Fi.png"></td>
+                      <td><img src="Images/Family.png"></td>
+                    </tr>
+                    <tr>
+                      <td><h3>Horror</h3></td>
+                      <td><h3>Musical</h3></td>
+                      <td><h3>Crime</h3></td>
+                    </tr>
+                    <tr>
+                      <td><img src="Images/Horror.png"></td>
+                      <td><img src="Images/Musical.png"></td>
+                      <td><img src="Images/Crime.png"></td>
+                    </tr>
+                    <tr>
+                      <td><h3>Drama</h3></td>
+                      <td><h3>Fantasy</h3></td>
+                      <td><h3>War</h3></td>
+                    </tr>
+                    <tr>
+                      <td><img src="Images/Drama.png"></td>
+                      <td><img src="Images/Fantasy.png"></td>
+                      <td><img src="Images/War.png"></td>
+                    </tr>
+                    <tr>
+                      <td><h3>Animation</h3></td>
+                      <td><h3>Music</h3></td>
+                      <td><h3>Adventure</h3></td>
+                    </tr>
+                    <tr>
+                      <td><img src="Images/Animation.png"></td>
+                      <td><img src="Images/Music.png"></td>
+                      <td><img src="Images/Adventure.png"></td>
+                    </tr>
+                    <tr>
+                      <td><h3>Action</h3></td>
+                      <td><h3>Comedy</h3></td>
+                      <td><h3>Western</h3></td>
+                    </tr>
+                    <tr>
+                      <td><img src="Images/Action.png"></td>
+                      <td><img src="Images/Comedy.png"></td>
+                      <td><img src="Images/Western.png"></td>
+                    </tr>
+                    <tr>
+                      <td><h3>Thriller</h3></td>
+                      <td><h3>Biography</h3></td>
+                    </tr>
+                    <tr>
+                      <td><img src="Images/Thriller.png"></td>
+                      <td><img src="Images/Biography.png"></td>
+                    </tr>
+                  </table>
+                  <h3>Conclusion</h3>
+                  <p>
+                    <Strong>
+                      In conclusion we can tell that based on the sentiment analysis of the descriptions, not much difference can be found between genres.<br>
+                      However when we take a look at the word cloud representation of each category, we get a different picture. In that case differences can be easily identified.<br>
+                      We found two main reasons why the sentiment analysis ended up with such homogen results:
+                      <ol>
+                        <li>
+                          When we used a description in as many category as it was labeled with, we created a lot of redundancy between genres.
+                        </li>
+                        <li>
+                          The descriptions of the movies may be too short and neutral in terms of sentiment for the analysis.
+                        </li>
+                      </ol>
+                    </Strong>
+                  </p>
+                  <h4>Outlooks</h4>
+                  <p>
+                    <Strong>
+                      For further analysis a good starting point would be to use the complete script of every movie to conduct a more efficient sentiment analysis, and word cloud generation.
+                    </Strong>
+                  </p>
 
 
 <!--
