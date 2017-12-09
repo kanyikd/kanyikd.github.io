@@ -1,45 +1,45 @@
 var margin ={top:20, right:30, bottom:90, left:40},
-    width=760-margin.left - margin.right,
+    width=860-margin.left - margin.right,
     height=330-margin.top-margin.bottom;
 
-                var datasetASSAULT=[];
-                var datasetBURGLARY=[];
-                var dataset;
+                var datasetASSAULT1=[];
+                var datasetBURGLARY1=[];
+                var dataset1;
 
                 d3.json("Sentiments.json", function(data) {
                     for (var i = 0, l=data.length, j=0, k=0; i <l; i++) {
-                        if (data[i]['TYPE']=="BURGLARY") {
-                            datasetASSAULT.push([]);
-                            datasetASSAULT[j].push(data[i]["YEAR"]);
-                            datasetASSAULT[j].push(data[i]["NUMBER"]);
+                        if (data[i]['TYPE']=="ASSAULT") {
+                            datasetASSAULT1.push([]);
+                            datasetASSAULT1[j].push(data[i]["YEAR"]);
+                            datasetASSAULT1[j].push(data[i]["NUMBER"]);
                             j++;
                         }
                         else {
-                            datasetBURGLARY.push([]);
-                            datasetBURGLARY[k].push(data[i]["YEAR"]);
-                            datasetBURGLARY[k].push(data[i]["NUMBER"]);
+                            datasetBURGLARY1.push([]);
+                            datasetBURGLARY1[k].push(data[i]["YEAR"]);
+                            datasetBURGLARY1[k].push(data[i]["NUMBER"]);
                             k++;
                         }
                     };
 
-                    dataset=datasetASSAULT;
+                    dataset1=datasetASSAULT1;
 
                     function getMaxOfArray(numArray) {
                         return Math.max.apply(null, numArray);
                     }
 
-                    var maxCollision=getMaxOfArray(dataset);
+                    var maxCollision=getMaxOfArray(dataset1);
 
                     var x = d3.scale.ordinal()
-                                    .domain(dataset.map(function(d){ return d[0]; }))
+                                    .domain(dataset1.map(function(d){ return d[0]; }))
                                     .rangeRoundBands([0, width], .1);
 
                     var y = d3.scale.linear()
-                                    .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+                                    .domain([0, d3.max(dataset1, function(d) { return d[1]; })])
                                     .range([height, 0]);
 
                     var barHeight = d3.scale.linear()
-                                         .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+                                         .domain([0, d3.max(dataset1, function(d) { return d[1]; })])
                                          .range([1, height]);
 
                     //Define X axis
@@ -59,7 +59,7 @@ var margin ={top:20, right:30, bottom:90, left:40},
                                   .attr("height", height+margin.top+margin.bottom);
 
                     var bar = chart.selectAll("g")
-                                    .data(dataset)
+                                    .data(dataset1)
                                     .enter()
                                     .append("g")
                                     .attr("transform", function(d, i){
@@ -110,9 +110,9 @@ var margin ={top:20, right:30, bottom:90, left:40},
                     d3.select("#buttonBurglary")
                         .on("click", function() {
 
-                            var dataset=datasetBURGLARY;
+                            var dataset1=datasetBURGLARY1;
 
-                            y.domain([0, d3.max(dataset, function(d) { return d[1]; })]);
+                            y.domain([0, d3.max(dataset1, function(d) { return d[1]; })]);
 
                             chart.select(".y.axis")
                                 .transition()
@@ -121,7 +121,7 @@ var margin ={top:20, right:30, bottom:90, left:40},
 
                             //Update all bars
                             bar.select("rect")
-                               .data(dataset)
+                               .data(dataset1)
                                .transition()
                                .duration(1000)
                                .attr("y", function(d) {
@@ -132,7 +132,7 @@ var margin ={top:20, right:30, bottom:90, left:40},
                                 });
 
                             bar.select("text")
-                                   .data(dataset)
+                                   .data(dataset1)
                                    .transition()
                                    .duration(1000)
                                     .attr("y", function(d) { return y(d[1]) + 2; })
@@ -146,9 +146,9 @@ var margin ={top:20, right:30, bottom:90, left:40},
                       d3.select("#buttonAssault")
                         .on("click", function() {
 
-                            var dataset=datasetASSAULT;
+                            var dataset1=datasetASSAULT1;
 
-                            y.domain([0, d3.max(dataset, function(d) { return d[1]; })]);
+                            y.domain([0, d3.max(dataset1, function(d) { return d[1]; })]);
 
                             chart.select(".y.axis")
                                 .transition()
@@ -157,7 +157,7 @@ var margin ={top:20, right:30, bottom:90, left:40},
 
                             //Update all bars
                             bar.select("rect")
-                               .data(dataset)
+                               .data(dataset1)
                                .transition()
                                .duration(1000)
                                .attr("y", function(d) {
@@ -168,7 +168,7 @@ var margin ={top:20, right:30, bottom:90, left:40},
                                 });
 
                             bar.select("text")
-                                   .data(dataset)
+                                   .data(dataset1)
                                    .transition()
                                    .duration(1000)
                                     .attr("y", function(d) { return y(d[1]) + 2; })

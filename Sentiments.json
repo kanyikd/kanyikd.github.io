@@ -1,102 +1,102 @@
 [
   {
     "YEAR":"Mystery",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.39
   },
   {
     "YEAR":"Romance",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.53
   },
   {
     "YEAR":"History",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.30
   },
   {
     "YEAR":"Sport",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.45
   },
   {
     "YEAR":"Sci-Fi",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.32
   },
   {
     "YEAR":"Family",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.49
   },
   {
     "YEAR":"Horror",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.39
   },
   {
     "YEAR":"Musical",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.52
   },
   {
     "YEAR":"Crime",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.30
   },
   {
     "YEAR":"Drama",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.43
   },
   {
     "YEAR":"Fantasy",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.38
   },
   {
     "YEAR":"War",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.31
   },
   {
     "YEAR":"Animation",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.47
   },
   {
     "YEAR":"Music",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.60
   },
   {
     "YEAR":"Adventure",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.36
   },
   {
     "YEAR":"Action",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.29
   },
   {
     "YEAR":"Comedy",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.51
   },
   {
     "YEAR":"Western",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.37
   },
   {
     "YEAR":"Thriller",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.34
   },
   {
     "YEAR":"Biography",
-    "TYPE":"BURGLARY",
+    "TYPE":"ASSAULT",
     "NUMBER":5.41
   }
 ]
